@@ -3,6 +3,7 @@
 *.wav
 *.wave
 *.ogg
+*.mpeg
 
 # playlists
 *.m3u

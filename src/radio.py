@@ -1,9 +1,15 @@
 from news import newsspeaker, researcher
+from music import music
 
-# Input text
-weather_text = researcher.getWeather()
-newsspeaker.readNews(weather_text, "weather_forecast")
+#weather_text = researcher.getWeather()
+#print(weather_text)
+#newsspeaker.readWithMaryread(weather_text, "weather_forecast")
 
-#news_text = researcher.News()
-newsspeaker.readNews(weather_text, "news")
+#news_text = researcher.getNews()
+#print(news_text)
+#newsspeaker.readWithMaryread(news_text, "news")
+
+music.fetchMusic()
+
+
 
