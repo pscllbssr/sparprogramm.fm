@@ -5,19 +5,18 @@ import httplib2
 import urllib # For URL creation
 
 # Mary server informations
-tts_host = "localhost"
+tts_host = "mary.dfki.de"
 tts_port = "59125"
 
 tts_audio_location = "/home/pi/radio/rendered/news/"
 
-
-def readNews(text, filename):
+def readWithMary(text, filename):
 
     # Build the query
     query_hash = {"INPUT_TEXT":text,
                   "INPUT_TYPE":"TEXT", # Input text
-                  "LOCALE":"en_US",
-                  "VOICE":"cmu-slt-hsmm", # Voice informations  (need to be compatible)
+                  "LOCALE":"de",
+                  "VOICE":"bits3-hsmm", # Voice informations  (need to be compatible)
                   "OUTPUT_TYPE":"AUDIO",
                   "AUDIO":"WAVE", # Audio informations (need both)
                   }
