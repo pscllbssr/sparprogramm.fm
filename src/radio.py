@@ -1,7 +1,9 @@
-# Example to consume MaryTTS: https://github.com/marytts/marytts-txt2wav/blob/python/txt2wav.py
-from news import newsspeaker
+from news import newsspeaker, researcher
 
 # Input text
-input_text = "Hello Alex you are great!"
+weather_text = researcher.getWeather()
+newsspeaker.readNews(weather_text, "weather_forecast")
 
-newsspeaker.readNews(input_text)
+#news_text = researcher.News()
+newsspeaker.readNews(weather_text, "news")
+

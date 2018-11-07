@@ -11,7 +11,7 @@ tts_port = "59125"
 tts_audio_location = "/home/pi/radio/rendered/news/"
 
 
-def readNews(text):
+def readNews(text, filename):
 
     # Build the query
     query_hash = {"INPUT_TEXT":text,
@@ -32,7 +32,7 @@ def readNews(text):
     if (resp["content-type"] == "audio/x-wav"):
 
         # Write the wav file
-        f = open(tts_audio_location + "/news.wav", "wb")
+        f = open(tts_audio_location + filename + ".wav", "wb")
         f.write(content)
         f.close()
 
