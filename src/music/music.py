@@ -18,7 +18,6 @@ def fetchMusic():
         
         for filename in files:      
             
-            
             try: 
                 fhandle = open(filename, 'wb')
                 connection.retrbinary('RETR ' + filename, fhandle.write)
@@ -37,6 +36,7 @@ def fetchMusic():
         
     except Exception, e:
         print 'Error downloading music library'
+        print e
 
 if __name__ == '__main__':
     fetchMusic()
