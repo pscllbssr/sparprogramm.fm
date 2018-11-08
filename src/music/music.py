@@ -10,7 +10,7 @@ def fetchMusic():
         connection = ftplib.FTP(music_config.FTP_HOST, music_config.FTP_USER, music_config.FTP_PASSWORD)
         connection.cwd(music_config.FTP_MUSIC_DIR)
         
-        files = connection.nlst()
+        files = connection.nlst('*.*')
         
         os.chdir(music_config.LOCAL_MUSIC_DIR)
         
