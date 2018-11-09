@@ -45,9 +45,12 @@ def getLatestTweets():
     return 'here we are'
 
 def _getNewsIntro():
+    
+    import time
+    
     news = ''
     hour = time.localtime().tm_hour + 1
-    news += "Es ist " + str(hour) +" Uhr, willkommen zu den News auf Sparprogramm.fm - Sparprogramm statt Radioprogramm "
+    news += "Es ist " + str(hour) +" Uhr, willkommen zu den News auf Sparprogramm.fm - Sparprogramm statt Radioprogramm \n"
     return news
 
 def getAlternativeFacts():
@@ -57,8 +60,8 @@ def getAlternativeFacts():
     news_feed = feedparser.parse("https://www.srf.ch/news/bnf/rss/1890")
     
     for i in '123':
-        entry = news_feed.entries[i]
-        news_text += entry['title'] + entry['description']
+        entry = news_feed.entries[int(i)]
+        news_text += entry['title'] + " \n" + entry['description'] + "\n\n"
         
     return news_text
     

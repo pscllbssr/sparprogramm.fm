@@ -10,15 +10,17 @@ from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 from email.mime.application import MIMEApplication
 
+
 time_string = time.strftime('%Y%m%d_%H')
 log_file = "/home/pi/radio/rendered/logs/" + time_string + "_log.txt"
 sys.stdout = open(log_file, "w")
+
 
 weather_text = researcher.getWeather()
 print 'Weather: ' + weather_text
 newsspeaker.readWithGoogle(weather_text, "weather_forecast")
 
-news_text = researcher.getNews()
+news_text = researcher.getAlternativeFacts()
 #print 'News:' + news_text
 newsspeaker.readWithGoogle(news_text, "news")
 
