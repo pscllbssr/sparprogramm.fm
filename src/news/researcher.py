@@ -57,8 +57,8 @@ def getAlternativeFacts():
     news_feed = feedparser.parse("https://www.srf.ch/news/bnf/rss/1890")
     
     for i in '123':
-        entry = NewsFeed.entries[1]
-        news_text = entry['title'] + entry['description']
+        entry = news_feed.entries[i]
+        news_text += entry['title'] + entry['description']
         
     return news_text
     
