@@ -6,19 +6,32 @@ def getWeather():
     
     owm = pyowm.OWM(news_config.OWM_API_KEY)
     
-    observation = owm.weather_at_place('Bern,CH')
-    weather = observation.get_weather()
+    observation_berne = owm.weather_at_place('Bern,CH')
+    observation_zurich = owm.weather_at_place('Zurich,CH')
+    observation_chur = owm.weather_at_place('Chur,CH')
+
+    weather_berne = observation_berne.get_weather().get_temperature('celsius')
+    weather_zurich = observation_zurich.get_weather().get_temperature('celsius')
+    weather_chur = observation_chur.get_weather().get_temperature('celsius')
     
-    weather_text = "Die Temperaturen in Bern bewegen sich heute zwischen " + str(weather.get_temperature('celsius')['temp_min']) + " und " + str(weather.get_temperature('celsius')['temp_max']) + " Grad"
-    
+    weather_text = news_config.WEATHER_TEXT.format(
+        weather_berne['temp_min'], 
+        weather_berne['temp_max'], 
+        weather_chur['temp_min'], 
+        weather_chur['temp_max'], 
+        weather_zurich['temp_min'],
+        weather_zurich['temp_max'])     
+
+
     # forecast to use later
     forecaster = owm.three_hours_forecast('Bern,CH')
     forecast = forecaster.get_forecast()
     for weather in forecast:
-        print (weather.get_reference_time('iso') + ": " + str(weather.get_temperature('celsius')['temp']))
+        w = weather
+        #print (weather.get_reference_time('iso') + ": " + str(weather.get_temperature('celsius')['temp']))
     
     #print(weather_text)
-    return (weather_text)
+    return weather_text
 
 def getNews():
     
