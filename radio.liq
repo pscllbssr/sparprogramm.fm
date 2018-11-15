@@ -19,7 +19,9 @@ myplaylist = playlist(reload=60, "~/radio/rendered/music")
 jingles = playlist("~/radio/rendered/jingles")
 
 # news
-news = single("~/radio/rendered/news/100sec.mp3")
+#news = single("~/radio/rendered/news/news.mp3")
+news = audio_to_stereo(single("~/radio/rendered/news/news.mp3"))
+weather = audio_to_stereo(single("~/radio/rendered/news/weather_forecast.mp3"))
 
 # If something goes wrong, we'll play this
 security = mksafe(single("~/radio/rendered/fallback/radio-fallback-no-music.mp3"))
@@ -28,10 +30,12 @@ security = mksafe(single("~/radio/rendered/fallback/radio-fallback-no-music.mp3"
 radio = myplaylist
 
 # Now add some jingles
-radio = random(weights = [1, 2],[jingles, radio])
+radio = random(weights = [1, 1, 1],[jingles, radio, weather])
 
 # Add news every hour
-radio = fallback(track_sensitive = false, [switch([ ( {22m0s} , news) ]), radio ])
+# Try another: https://www.liquidsoap.info/doc-dev/cookbook.html (at handle special events: mix or switch)
+radio = fallback(track_sensitive = false, [switch([ ( {00m0s} , news) ]), radio ])
+# radio = add([radio,switch([({00m0s},news)])])
 
 # And finally the security
 radio = fallback(track_sensitive = false, [radio, security])
@@ -40,11 +44,11 @@ radio = fallback(track_sensitive = false, [radio, security])
 # Stream it out
 output.icecast(%vorbis,
   host = "localhost", port = 8000,
-  password = "fIvYfwcbA6QqCdyl8XPv", mount = "guerilla-radio.ogg",
-  name = "Guerilla Radio",description = "Das Radio ohne Journalisten",
+  password = "fIvYfwcbA6QqCdyl8XPv", mount = "sparpaket-fm.ogg",
+  name = "Sparpaket.fm",description = "Das Radio ohne Journalisten",
   radio)
 output.icecast(%mp3(bitrate=128),
   host = "localhost", port = 8000,
-  password = "fIvYfwcbA6QqCdyl8XPv", mount = "guerilla-radio.mp3",
-  name = "Guerilla Radio",description = "Das Radio ohne Journalisten",
+  password = "fIvYfwcbA6QqCdyl8XPv", mount = "sparpaket-fm.mp3",
+  name = "Sparpaket.fm",description = "Das Radio ohne Journalisten",
   radio)
