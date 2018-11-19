@@ -77,4 +77,17 @@ def getAlternativeFacts():
         news_text += entry['title'] + " \n" + entry['description'] + "\n\n"
         
     return news_text
+
+def getNewsMix():
+    
+    import scraper
+    
+    news_text = _getNewsIntro()
+    
+    news_text = news_text + scraper.scrapeTXT(news_config.NEWS_SOURCE_1, 2)
+    news_text = news_text + scraper.scrapeTXT(news_config.NEWS_SOURCE_2, 1)
+    news_text = news_text + scraper.scrapeTXT(news_config.NEWS_SOURCE_3, 1)
+    
+    return news_text
+
     

@@ -30,10 +30,10 @@ security = mksafe(single("~/radio/rendered/fallback/radio-fallback-no-music.mp3"
 radio = myplaylist
 
 # Now add some jingles
-radio = random(weights = [1, 1, 1],[jingles, radio, weather])
+radio = rotate(weights = [1, 2, 1],[jingles, radio, weather])
 
 # Add news every hour
-# Try another: https://www.liquidsoap.info/doc-dev/cookbook.html (at handle special events: mix or switch)
+# Try another: https://www.liquidsoap.info/doc-dev/cookbook.html (zweites fenster unter switch-based transitions)
 radio = fallback(track_sensitive = false, [switch([ ( {00m0s} , news) ]), radio ])
 # radio = add([radio,switch([({00m0s},news)])])
 
