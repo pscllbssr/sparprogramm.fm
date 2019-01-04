@@ -41,6 +41,7 @@ def readWithMary(text, filename):
 def readWithGoogle(text, filename):
 
     from google.cloud import texttospeech
+    import random
 
     '''
     Google Cloud Path Variable must be set, according to
@@ -55,9 +56,18 @@ def readWithGoogle(text, filename):
 
     # Build the voice request, select the language code ("en-US") and the ssml
     # voice gender ("neutral")
-    voice = texttospeech.types.VoiceSelectionParams(
-        language_code='de-DE',
-        ssml_gender=texttospeech.enums.SsmlVoiceGender.NEUTRAL)
+    # change gender randomly
+    
+    if bool(random.getrandbits(1)):
+        print 'male voice choosen'
+        voice = texttospeech.types.VoiceSelectionParams(
+            language_code='de-DE',
+            ssml_gender=texttospeech.enums.SsmlVoiceGender.MALE)
+    else:
+        print 'female voice choosen'
+        voice = texttospeech.types.VoiceSelectionParams(
+            language_code='de-DE',
+            ssml_gender=texttospeech.enums.SsmlVoiceGender.FEMALE)
 
     # Select the type of audio file you want returned
     audio_config = texttospeech.types.AudioConfig(

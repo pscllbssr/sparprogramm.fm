@@ -19,14 +19,14 @@ def getMostPopularArticle():
     response = requests.post(url, data=params)
     
     json_string = response.json()
-    article['title'] = json_string[0]['previewText']
+    article['title'] = json_string[0]['previewText'].encode('utf-8')
     article['url'] = baseUrl + json_string[0]['permalink']
     
     from bs4 import BeautifulSoup
     
     response = requests.get(article['url'])
     soup = BeautifulSoup(response.content, 'html.parser')
-    article['author'] = soup.find('div', class_="entry-author").get_text(" ", strip=True)
+    article['author'] = soup.find('div', class_="entry-author").get_text(" ", strip=True).encode('utf-8')
     
     return text.format(article['title'], article['author'])
     
