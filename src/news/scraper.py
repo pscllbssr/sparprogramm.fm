@@ -11,8 +11,8 @@ def scrapeTXT(url, limit):
     articles = soup.find_all('article')
 
     for article in articles[0:limit]:
-        title = article.find('h2').get_text().encode("utf-8","ignore")
-        content = article.find('div', class_="inner").find('p').get_text().encode("utf-8","ignore")
+        title = article.find('h2').get_text().encode("utf-8","ignore") + "<break time=\"500ms\" />"
+        content = article.find('div', class_="inner").find('p').get_text().encode("utf-8","ignore") + "<break time=\"700ms\" />"
         
         newsTxt = newsTxt + title + content
         

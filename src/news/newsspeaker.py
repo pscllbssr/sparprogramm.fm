@@ -47,9 +47,11 @@ def readWithGoogle(text, filename):
     https://cloud.google.com/text-to-speech/docs/quickstart-client-libraries#before-you-begin
     '''
     client = texttospeech.TextToSpeechClient()
+    
+    text = "<speak>" + text + "</speak>"
 
     # Set the text input to be synthesized
-    synthesis_input = texttospeech.types.SynthesisInput(text=text)
+    synthesis_input = texttospeech.types.SynthesisInput(ssml=text)
 
     # Build the voice request, select the language code ("en-US") and the ssml
     # voice gender ("neutral")

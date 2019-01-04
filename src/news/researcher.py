@@ -118,7 +118,8 @@ def getNewsMix():
     
     import scraper
     
-    news_text = _getNewsIntro()
+    news_text = ""
+    news_text = news_text + _getNewsIntro()
     
     news_text = news_text + scraper.scrapeTXT(news_config.NEWS_SOURCE_1, 2)
     news_text = news_text + scraper.scrapeTXT(news_config.NEWS_SOURCE_2, 1)
