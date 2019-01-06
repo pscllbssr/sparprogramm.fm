@@ -4,8 +4,9 @@ Sparpaket.fm is an autonomous radio station. A set of python scripts collects an
 ## Setup
 There are some dependencies. To start, install..
 - Icecast
-- Liquidsoap 
-- MaryTTS ([Instructions](https://github.com/marytts/marytts/wiki/Local-MaryTTS-Server-Installation)) 
+- Liquidsoap
+
+Later on you should sign in to a Google Cloud Account for the text-to-speach functions to run. Alternatively you could install a MaryTTS-Server locally ([Instructions](https://github.com/marytts/marytts/wiki/Local-MaryTTS-Server-Installation)). 
 
 Make sure the file is executabele and start the radio station with
 ```
