@@ -8,7 +8,7 @@ There are some dependencies. To start, install..
 
 Later on you should sign in to a Google Cloud Account for the text-to-speach functions to run. Alternatively you could install a MaryTTS-Server locally ([Instructions](https://github.com/marytts/marytts/wiki/Local-MaryTTS-Server-Installation)). 
 
-Make sure the file is executabele and start the radio station with
+Make sure the ```radio.liq```-file is executabele and start the radio station with
 ```
 $ ./radio.liq
 ```
