@@ -58,8 +58,16 @@ def getWeather():
         chur_forecast_status,
         int(chur_forecast_temp),
         zurich_forecast_status,
+<<<<<<< HEAD
         int(zurich_forecast_temp)) 
     
+=======
+        int(zurich_forecast_temp))
+    
+    for key, value in news_config.WEATHER_TRANSLATIONS.items():
+        weather_text = weather_text.replace(key, value)
+        
+>>>>>>> a6a4fb68e473bc6a78ed7f2c8cd7c48e7bd75d4d
     #print(weather_text)
     return weather_text
 
@@ -73,7 +81,11 @@ def getNews():
     hour = time.localtime().tm_hour + 1
     #news += "Es ist " + str(hour) +" Uhr, willkommen zu den News auf Sparprogramm.fm"
     news += "Du hörst Sparprogramm.fm und es ist Zeit für die Nachrichten."
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> a6a4fb68e473bc6a78ed7f2c8cd7c48e7bd75d4d
     resp = requests.get('https://api.presseportal.ch/api/article/all?&format=json&lang=de&teaser=1&limit=3&api_key=' + news_config.PRESSEPORTAL_API_KEY)
     if resp.status_code != 200:
         # This means something went wrong.
@@ -93,8 +105,15 @@ def _getNewsIntro():
     import time
     
     news = ''
+<<<<<<< HEAD
     hour = time.localtime().tm_hour + 1
     news += "Es ist " + str(hour) +" Uhr, willkommen zu den News auf Sparprogramm.fm \n"
+=======
+    #hour = time.localtime().tm_hour + 1
+    #news += "Es ist " + str(hour) +" Uhr, willkommen zu den News auf Sparprogramm.fm \n"
+    news += "Du hörst Sparprogramm.fm und es ist Zeit für die Nachrichten."
+
+>>>>>>> a6a4fb68e473bc6a78ed7f2c8cd7c48e7bd75d4d
     return news
 
 def getAlternativeFacts():
@@ -113,7 +132,8 @@ def getNewsMix():
     
     import scraper
     
-    news_text = _getNewsIntro()
+    news_text = ""
+    news_text = news_text + _getNewsIntro()
     
     news_text = news_text + scraper.scrapeTXT(news_config.NEWS_SOURCE_1, 2)
     news_text = news_text + scraper.scrapeTXT(news_config.NEWS_SOURCE_2, 1)
