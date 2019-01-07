@@ -1,22 +1,19 @@
 #!/home/pi/.opam/system/bin/liquidsoap
 
-# Stand: Alle Stunden wird das File in News Abgespielt, danach kommt musik abwechselnd mit jingles
-# scheinbar können mp3/wav/ogg files von marytts nicht abgespielt werden. Falsch kodiert?
-# Todo: Transitions vor News, autotisches reloaden der playlist
-
 # Log dir
 set("log.file.path","/tmp/basic-radio.log")
 
 # Log to console
 set("log.stdout", true)
 
+# include fades
+%include "liquidsoap/fades.liq"
+
 # Music
-# Playlist könnte  auch von einer Datei im Netz stammen:
-# playlist(reload=600,"http://my/playlist.txt")
 myplaylist = playlist(reload=60, "~/radio/rendered/music")
 
 # Some jingles
-jingles = playlist("~/radio/rendered/jingles")
+jingles = audio_to_stereo(playlist("~/radio/rendered/jingles"))
 
 # news
 #news = single("~/radio/rendered/news/news.mp3")
@@ -38,6 +35,8 @@ radio = rotate(weights = [1,1],[radio, infos])
 # Try another: https://www.liquidsoap.info/doc-dev/cookbook.html (zweites fenster unter switch-based transitions)
 radio = fallback(track_sensitive = false, [switch([ ( {00m0s} , news) ]), radio ])
 # radio = add([radio,switch([({00m0s},news)])])
+
+#radio = crossfade(start_next=1.,fade_out=1.,fade_in=1.,radio)
 
 # And finally the security
 radio = fallback(track_sensitive = false, [radio, security])

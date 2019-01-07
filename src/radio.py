@@ -43,7 +43,7 @@ try:
     article_text = diecheese.getMostPopularArticle()
     newsspeaker.readWithGoogle(article_text, "most_popular_cheese")
 except SyntaxError as e:
-    print 'Failed to prepare weather digezz-shizzle:'
+    print 'Failed to prepare digezz-shizzle:'
     print e
 except Exception, e:
     print 'Failed to prepare weather digezz-shizzle:'
