@@ -22,15 +22,17 @@ jingles = playlist("~/radio/rendered/jingles")
 #news = single("~/radio/rendered/news/news.mp3")
 news = audio_to_stereo(single("~/radio/rendered/news/news.mp3"))
 weather = audio_to_stereo(single("~/radio/rendered/news/weather_forecast.mp3"))
+die_cheese = audio_to_stereo(single("~/radio/rendered/news/most_popular_cheese.mp3"))
 
 # If something goes wrong, we'll play this
 security = mksafe(single("~/radio/rendered/fallback/radio-fallback-no-music.mp3"))
 
 # Start building the feed with music
 radio = myplaylist
+infos = rotate(weights = [1,1,1], [jingles, weather, die_cheese])
 
 # Now add some jingles
-radio = rotate(weights = [1, 2, 1],[jingles, radio, weather])
+radio = rotate(weights = [1,1],[radio, infos])
 
 # Add news every hour
 # Try another: https://www.liquidsoap.info/doc-dev/cookbook.html (zweites fenster unter switch-based transitions)
@@ -44,11 +46,11 @@ radio = fallback(track_sensitive = false, [radio, security])
 # Stream it out
 output.icecast(%vorbis,
   host = "localhost", port = 8000,
-  password = "fIvYfwcbA6QqCdyl8XPv", mount = "sparpaket-fm.ogg",
-  name = "Sparpaket.fm",description = "Das Radio ohne Journalisten",
+  password = "fIvYfwcbA6QqCdyl8XPv", mount = "sparprogramm-fm.ogg",
+  name = "Sparprogramm.fm",description = "Das automatische Radio",
   radio)
 output.icecast(%mp3(bitrate=128),
   host = "localhost", port = 8000,
-  password = "fIvYfwcbA6QqCdyl8XPv", mount = "sparpaket-fm.mp3",
-  name = "Sparpaket.fm",description = "Das Radio ohne Journalisten",
+  password = "fIvYfwcbA6QqCdyl8XPv", mount = "sparprogramm-fm.mp3",
+  name = "Sparprogramm.fm",description = "Das automatische Radio",
   radio)
