@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+OWM_API_KEY = ''
+
+WEATHER_TEXT = "Es folgt eine kurze Unterbrechung für das aktuelle Wetter. "
+WEATHER_TEXT = WEATHER_TEXT + "In der Bundeshaupstadt herrschen heute Temperaturen zwischen {} und {} Grad Celsius. In Chur liegen die Werte zwischen {} und {}, in Zürich zwischen {} und {}. " 
+WEATHER_TEXT = WEATHER_TEXT + "Morgen zeigen die Voraussagen in Bern {} bei {} Grad an, in Chur {} bei {} Grad, in Zürich wird es {} bei {} Grad. "
+WEATHER_TEXT = WEATHER_TEXT + "Die Wetterdaten wurden zur Verfügung gestellt von Open Weather Map."
+
+WEATHER_TRANSLATIONS = {
+    "Snow": "Schnee",
+    "Clear": "klares Wetter",
+    "Clouds": "bewölkt"   
+}
+
+
+# https://openweathermap.org/weather-conditions
+
+NEWS_SOURCE_1 = "http://www.teletext.ch/de/Webtext/News/Inland"
+NEWS_SOURCE_2 = "http://www.teletext.ch/de/Webtext/News/Wirtschaft"
+NEWS_SOURCE_3 = "http://www.teletext.ch/de/Webtext/News/Ausland"
+
+NEWS_OUTRO = "Die Nachrichten wurden zur Verfuegung gestellt vom Schweizer Radio und Fernsehen."

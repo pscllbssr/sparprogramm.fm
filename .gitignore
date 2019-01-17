@@ -132,4 +132,4 @@ dmypy.json
 
 # custom config files
 *_config.*
-!config.*.sample
+!*config.*.sample
