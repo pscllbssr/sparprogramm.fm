@@ -13,7 +13,6 @@ sys.stdout = open(log_file, "w")
 # make weather forecast
 try: 
     weather_text = researcher.getWeather()
-    #print('Weather: ' + weather_text)
     newsspeaker.readWithGoogle(weather_text, "weather_forecast")
 except SyntaxError as e:
     print 'Failed to prepare weather weather forecast'
@@ -25,7 +24,6 @@ except Exception, e:
 # produce news
 try: 
     news_text = researcher.getNewsMix()
-    #print('News:' + news_text)
     newsspeaker.readWithGoogle(news_text, "news")
 except SyntaxError as e:
     print 'Failed to prepare news'
