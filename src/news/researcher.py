@@ -63,56 +63,16 @@ def getWeather():
     for key, value in news_config.WEATHER_TRANSLATIONS.items():
         weather_text = weather_text.replace(key, value)
    
-    #print(weather_text)
     return weather_text
-
-def getNews():
-    
-    import json    
-    import requests
-    import time
-    
-    news = ''
-    hour = time.localtime().tm_hour + 1
-    #news += "Es ist " + str(hour) +" Uhr, willkommen zu den News auf Sparprogramm.fm"
-    news += "Du hörst Sparprogramm.fm und es ist Zeit für die Nachrichten."
-
-    resp = requests.get('https://api.presseportal.ch/api/article/all?&format=json&lang=de&teaser=1&limit=3&api_key=' + news_config.PRESSEPORTAL_API_KEY)
-    if resp.status_code != 200:
-        # This means something went wrong.
-        print('Keine News verfügbar (API-Error)')
-    response = resp.json()
-    
-    for story in response['content']['story']:        
-        news += story['teaser']
-        
-    return news
-
-def getLatestTweets():
-    return 'here we are'
 
 def _getNewsIntro():
     
     import time
     
     news = ''
-    #hour = time.localtime().tm_hour + 1
-    #news += "Es ist " + str(hour) +" Uhr, willkommen zu den News auf Sparprogramm.fm \n"
     news += "Du hörst Sparprogramm.fm und es ist Zeit für die Nachrichten."
     
     return news
-
-def getAlternativeFacts():
-    import feedparser
-    
-    news_text = _getNewsIntro()
-    news_feed = feedparser.parse("https://www.srf.ch/news/bnf/rss/1890")
-    
-    for i in '123':
-        entry = news_feed.entries[int(i)]
-        news_text += entry['title'] + " \n" + entry['description'] + "\n\n"
-        
-    return news_text
 
 def getNewsMix():
     

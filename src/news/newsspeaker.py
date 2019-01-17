@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# HTTP + URL packages
-# import httplib2
-# import urllib # For URL creation
-
 # Mary server informations
 tts_host = "mary.dfki.de"
 tts_port = "59125"
@@ -43,10 +39,6 @@ def readWithGoogle(text, filename):
     from google.cloud import texttospeech
     import random
 
-    '''
-    Google Cloud Path Variable must be set, according to
-    https://cloud.google.com/text-to-speech/docs/quickstart-client-libraries#before-you-begin
-    '''
     client = texttospeech.TextToSpeechClient()
     
     text = "<speak>" + text + "</speak>"
